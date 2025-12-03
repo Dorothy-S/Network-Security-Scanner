@@ -8,7 +8,6 @@ def show_banner():
     print()
 
 def log_message(message):
-    """Simple logging function"""
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{timestamp}] {message}")
     
@@ -16,8 +15,8 @@ def log_message(message):
     with open("scan_log.txt", "a") as f:
         f.write(f"[{timestamp}] {message}\n")
 
+#checks if port is open
 def check_port(target, port):
-    """Check if a port is open"""
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(1)
@@ -30,9 +29,8 @@ def check_port(target, port):
             return False
     except:
         return False
-
+#Port scanner
 def simple_port_scan():
-    """Basic port scanner"""
     print("\n--- PORT SCANNER ---")
     target = input("Enter target IP or website (like google.com): ")
     
@@ -59,9 +57,8 @@ def simple_port_scan():
         print("\nNo open ports found.")
     
     return open_ports
-
+#Website security checker 
 def check_website_security():
-    """Basic website security checker"""
     print("\n--- WEBSITE SECURITY CHECKER ---")
     website = input("Enter website URL (without http://): ")
     
@@ -80,7 +77,7 @@ def check_website_security():
             else:
                 security_issues.append(f"Port {port} is open")
     
-    # Simple security assessment
+    #  security checking
     if security_issues:
         print("\nSECURITY ISSUES FOUND:")
         for issue in security_issues:
@@ -89,9 +86,9 @@ def check_website_security():
     else:
         print("\n no major security issues found!")
         log_message(f"{website} looks secure")
-
+        
+#password strenth checker
 def password_strength_check():
-    """Basic password strength checker"""
     print("\n--- PASSWORD STRENGTH CHECKER ---")
     password = input("Enter password to check: ")
     
@@ -144,8 +141,8 @@ def password_strength_check():
     
     log_message(f"Password checked - Score: {score}/5")
 
+#main menu
 def show_menu():
-    """Display main menu"""
     print("\nWhat do you want to do?")
     print("1. Scan for open ports")
     print("2. Check website security")
@@ -156,8 +153,8 @@ def show_menu():
     choice = input("\nEnter your choice (1-5): ")
     return choice
 
+#Checkes logs
 def view_log():
-    """Show the scan log"""
     print("\n--- SCAN LOG ---")
     try:
         with open("scan_log.txt", "r") as f:
@@ -169,8 +166,8 @@ def view_log():
     except FileNotFoundError:
         print("No log file found yet")
 
+# starting screen
 def main():
-    """Main program"""
     show_banner()
     
     print("Welcome to Simple Network Security Scanner!")
